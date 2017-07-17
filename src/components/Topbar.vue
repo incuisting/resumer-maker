@@ -1,12 +1,19 @@
 <template>
     <div id="topbar">
-        我是topbar
+        <div class="logo">
+            ResumerMaker
+        </div>
+        <div class="actions">
+            <button>注册</button>
+            <button>登录</button>
+        </div>
     </div>
 </template>
 <style>
-#topbar{
-    border: 1px solid red;
-    min-height: 100px;
+#topbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
 }
 </style>
 
