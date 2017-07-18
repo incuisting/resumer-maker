@@ -12,34 +12,15 @@
         <ol class="panes">
             <li v-bind:class="{active:currentTab===0}">
                 <h2>个人信息</h2>
-                <el-form>
-                    <el-form-item label="姓名">
-                        <el-input v-model="profile.name"></el-input>
-                    </el-form-item>
-                    <el-form-item label="城市">
-                        <el-input v-model="profile.city"></el-input>
-                    </el-form-item>
-                    <el-form-item label="出生">
-                        <el-input v-model="profile.birth"></el-input>
-                    </el-form-item>
-                </el-form>
+               <ProfileEditor v-bind:profile="profile"></ProfileEditor>
             </li>
             <li v-bind:class="{active:currentTab===1}">
-                <el-form>
-                    <div v-for="(work,index) in workHistory">
-                        <el-form-item label="公司">
-                            <el-input v-model="work.company"></el-input>
-                        </el-form-item>
-                        <el-form-item label="工作">
-                            <el-input v-model="work.content"></el-input>
-                        </el-form-item>
-                        <i class="el-icon-circle-close" v-on:click="removeWorkHistory(work)"></i>
-                    </div>
-                    <el-button type="primary" v-on:click="addWorkHistory">添加</el-button>
-                </el-form>
+                <h2>工作经历</h2>
+                <zxc v-bind:items="workHistory" v-bind:labels="{company:'公司',content:'工作内容'}"></zxc>
             </li>
             <li v-bind:class="{active:currentTab===2}">
                 <h2>学习经历</h2>
+                <zxc v-bind:items="school" v-bind:labels="{aa:'学校',bb:'学历',cc:'zhuangye'}"></zxc>
             </li>
             <li v-bind:class="{active:currentTab===3}">
                 <h2>项目经验</h2>
@@ -54,7 +35,10 @@
     </div>
 </template>
 <script>
+import ProfileEditor from './ProfileEditor'
+import zxc from './zxc'
 export default {
+    components:{ProfileEditor,zxc},
     data() {
         return {
             currentTab: 0,
@@ -66,16 +50,19 @@ export default {
             },
             workHistory: [
                 { company: '', content: '' }
+            ],
+            school:[
+                {aa:'',bb:'',cc:''}
             ]
         }
     },
     methods: {
-        addWorkHistory() {
+        addWorkHistory() { //添加工作经历
             this.workHistory.push({
                 company: '', content: ''
             })
         },
-        removeWorkHistory(index) {
+        removeWorkHistory(index) { //删除工作经历
             this.workHistory.splice(index, 1)
         }
     }
@@ -105,6 +92,9 @@ export default {
         }
     }
     >.panes {
+        overflow: auto;
+        flex: 1;
+        padding: 24px;
         >li {
             display: none;
             &.active {
