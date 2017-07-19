@@ -16,11 +16,11 @@
             </li>
             <li v-bind:class="{active:currentTab===1}">
                 <h2>工作经历</h2>
-                <zxc v-bind:items="workHistory" v-bind:labels="{company:'公司',content:'工作内容'}"></zxc>
+                <ArrayEditor v-bind:items="workHistory" v-bind:labels="{company:'公司',content:'工作内容'}"></ArrayEditor>
             </li>
             <li v-bind:class="{active:currentTab===2}">
                 <h2>学习经历</h2>
-                <zxc v-bind:items="school" v-bind:labels="{aa:'学校',bb:'学历',cc:'zhuangye'}"></zxc>
+                <ArrayEditor v-bind:items="studyHistory" v-bind:labels="{school:'学校',duration:'时间',degree:'学位'}"></ArrayEditor>
             </li>
             <li v-bind:class="{active:currentTab===3}">
                 <h2>项目经验</h2>
@@ -36,9 +36,9 @@
 </template>
 <script>
 import ProfileEditor from './ProfileEditor'
-import zxc from './zxc'
+import ArrayEditor from './ArrayEditor'
 export default {
-    components:{ProfileEditor,zxc},
+    components:{ProfileEditor,ArrayEditor},
     data() {
         return {
             currentTab: 0,
@@ -51,8 +51,8 @@ export default {
             workHistory: [
                 { company: '', content: '' }
             ],
-            school:[
-                {aa:'',bb:'',cc:''}
+            studyHistory:[
+                {school:'',duration:'',degree:''}
             ]
         }
     },
