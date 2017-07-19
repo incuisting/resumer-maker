@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h2>个人信息</h2>
         <el-form>
             <el-form-item label="姓名">
                 <el-input v-model="profile.name"></el-input>
