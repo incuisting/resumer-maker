@@ -3,11 +3,19 @@
         <h1>{{resume.profile.name || '请填写姓名'}}</h1>
         <p>{{resume.profile.city || '请填写城市'}}</p>
         <p>{{resume.profile.birth || '请填写生日'}}</p>
-         <section v-if="filter(resume.projects).length > 0">
-            
+        <section v-if="filter(resume.workHistory).length > 0">           
+            <h2>工作经历</h2>
+            <ol>
+                <li v-for="work in filter(resume.workHistory)" :key="work.company">
+                    {{work.company}}
+                    {{work.content}}
+                </li>
+            </ol>
+        </section>
+         <section v-if="filter(resume.projects).length > 0">           
             <h2>项目</h2>
             <ol>
-                <li v-for="project in filter(resume.projects)" :key="project">
+                <li v-for="project in filter(resume.projects)" :key="project.name">
                     {{project.name}}
                     {{project.content}}
                 </li>
