@@ -2,8 +2,8 @@
   <div id="app">
     <Topbar class="topbar"></Topbar>
     <main>
-      <Editor class="editor"></Editor>
-      <Preview class="preview"></Preview>
+      <Editor v-bind:resume="resume" class="editor"></Editor>
+      <Preview v-bind:resume="resume" class="preview"></Preview>
     </main>
   </div>
 </template>
@@ -15,6 +15,32 @@ import Preview from './components/Preview'
 
 
 export default {
+  data() {
+    return {
+      resume: {
+        profile: {
+          name: '',
+          city: '',
+          birth: ''
+        },
+        workHistory: [
+          { company: '', content: '' }
+        ],
+        studyHistory: [
+          { school: '', duration: '', degree: '' }
+        ],
+        projects: [
+          { name: '', content: '' }
+        ],
+        awards: [
+          { name: '' }
+        ],
+        contacts: {
+          qq: '', wechat: '', phone: '', email: ''
+        }
+      }
+    }
+  },
   components: {
     Topbar,
     Editor,
@@ -24,7 +50,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -33,12 +58,15 @@ export default {
   display: flex;
   flex-direction: column;
 }
- .icon {
-       width: 1em; height: 1em;
-       vertical-align: -0.15em;
-       fill: currentColor;
-       overflow: hidden;
-    }
+
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
 .topbar {
   position: relative;
   index: 1;

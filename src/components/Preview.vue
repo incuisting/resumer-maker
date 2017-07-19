@@ -1,10 +1,15 @@
 <template>
     <div id="priview">
-        我是priview
+        {{resume.profile.name}}
     </div>
 </template>
+<script>
+export default {
+  props:['resume']
+}
+</script>
+
 <style>
 #priview{
-    min-height: 100px;
 }
 </style>
