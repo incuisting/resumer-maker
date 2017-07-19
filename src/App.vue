@@ -1,10 +1,11 @@
 <template>
-  <div id="app">
-    <Topbar class="topbar"></Topbar>
+  <div id="app" :class="{previewMode : previewMode}">
+    <Topbar v-on:preview="preview" class="topbar"></Topbar>
     <main>
       <Editor v-bind:resume="resume" class="editor"></Editor>
       <Preview v-bind:resume="resume" class="preview"></Preview>
     </main>
+    <el-button id="exitPreview" v-on:click="exitPreview">退出预览</el-button>
   </div>
 </template>
 
@@ -17,6 +18,7 @@ import Preview from './components/Preview'
 export default {
   data() {
     return {
+      previewMode: false,
       resume: {
         profile: {
           name: '',
@@ -39,6 +41,14 @@ export default {
           qq: '', wechat: '', phone: '', email: ''
         }
       }
+    }
+  },
+  methods: {
+    exitPreview() {
+      this.previewMode = false
+    },
+    preview() {
+      this.previewMode = true
     }
   },
   components: {
@@ -93,5 +103,29 @@ main {
     border-radius: 4px;
     overflow: hidden;
   }
+}
+
+.previewMode>#topbar {
+  display: none;
+}
+
+.previewMode #editor {
+  display: none;
+}
+
+.previewMode #preview {
+  max-width: 800px;
+  margin: 32px auto;
+}
+
+#exitPreview {
+  display: none;
+}
+
+.previewMode #exitPreview {
+  display: inline-block;
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
 }
 </style>
