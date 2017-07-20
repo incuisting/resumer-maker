@@ -2,7 +2,7 @@
     <div id="editor">
         <nav>
             <ol>
-                <li v-for="i in [0,1,2,3,4,5]" v-bind:class="{active:currentTab===i}" v-on:click="currentTab=i">
+                <li v-for="i in [0,1,2,3,4,5]" v-bind:class="{active:currentTab===i}" v-on:click="currentTab=i" :key="i">
                     <svg class="icon">
                         <use v-bind:xlink:href="`#${icons[i]}`"></use>
                     </svg>
@@ -42,6 +42,7 @@
                     </el-form-item>
                 </el-form>
             </li>
+           
         </ol>
     </div>
 </template>
@@ -51,6 +52,11 @@ import ArrayEditor from './ArrayEditor'
 export default {
     props:['resume'],
     components: { ProfileEditor, ArrayEditor },
+    computed:{
+        count(){
+            return this.$store.state.count
+        }
+    },
     data() {
         return {
             currentTab: 0,
@@ -59,6 +65,9 @@ export default {
         }
     },
     methods: {
+        add(){
+            this.$store.commit('increment')
+        },
         addWorkHistory() { //添加工作经历
             this.workHistory.push({
                 company: '', content: ''
