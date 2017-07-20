@@ -1,5 +1,6 @@
 <template>
     <div id="preview">
+        {{resume}}
         <h1>{{resume.profile.name || '请填写姓名'}}</h1>
         <p>{{resume.profile.city || '请填写城市'}}</p>
         <p>{{resume.profile.birth || '请填写生日'}}</p>
