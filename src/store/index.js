@@ -33,6 +33,8 @@ export default new Vuex.Store({
         }
     },
     mutations: {
-
+        updateResume(state, { field, subfield, value }) {
+            state.resume[field][subfield] = value
+        }
     }
 })

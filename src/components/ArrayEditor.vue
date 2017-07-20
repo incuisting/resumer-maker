@@ -4,7 +4,7 @@
         <el-form>
             <div v-for="(work,index) in items" v-bind:key="index">
                 <el-form-item v-for="key in keys" v-bind:label="labels[key] || key" v-bind:key="key">
-                    <el-input v-model="work[key]"></el-input>
+                    <el-input :value="value" @input="changeResumeField(field, key, $event.target.value)"></el-input>
                 </el-form-item>
                 <i class="el-icon-circle-close" v-on:click="removeItems(index)"></i>
             </div>
@@ -15,13 +15,20 @@
 
 <script>
 export default {
-    props: ['items', 'labels','title'],
+    props: ['items', 'labels','title','field'],
     computed: {
         keys() {
             return Object.keys(this.items[0])
         }
     },
     methods: {
+        changeResumeField(field, subfield, value){
+        this.$store.commit('updateResume',{
+          field,
+          subfield,
+          value
+        })
+      },
         addItems() { //添加工作经历
             const empty = {}
             this.keys.map((key) => {
