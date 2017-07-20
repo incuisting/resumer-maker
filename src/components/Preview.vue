@@ -25,7 +25,12 @@
 </template>
 <script>
 export default {
-    props: ['resume'],
+    name:"preview",
+    computed:{
+        resume(){
+            return this.$store.state.resume
+        }
+    },
     methods: {
         filter(array) { //找出非空对象
             return array.filter(item => !this.isEmpty(item))

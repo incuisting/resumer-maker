@@ -2,8 +2,8 @@
   <div id="app" :class="{previewMode : previewMode}">
     <Topbar v-on:preview="preview" class="topbar"></Topbar>
     <main>
-      <Editor v-bind:resume="resume" class="editor"></Editor>
-      <Preview v-bind:resume="resume" class="preview"></Preview>
+      <Editor  class="editor"></Editor>
+      <Preview  class="preview"></Preview>
     </main>
     <el-button id="exitPreview" v-on:click="exitPreview">退出预览</el-button>
   </div>
