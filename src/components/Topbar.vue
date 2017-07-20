@@ -5,18 +5,29 @@
         </div>
         <div class="actions">
             <el-button>登录</el-button>
-            <el-button type="primary">注册</el-button>
+            <el-button type="primary" @click="signUpDialogVisible = true">注册</el-button>
+            <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
+                我在那里
+            </MyDialog>
             <el-button @click="preview">预览</el-button>
         </div>
     </div>
 </template>
 <script>
+import MyDialog from './MyDialog'
 export default {
-  methods:{
-      preview(){
-        this.$emit('preview')
-      }
-  }
+    name:'Topbar',
+    data(){
+        return{
+            signUpDialogVisible: false 
+        }
+    },
+    components: { MyDialog },
+    methods: {
+        preview() {
+            this.$emit('preview')
+        }
+    }
 }
 </script>
 
