@@ -15,7 +15,7 @@
 
 <script>
 export default {
-    props: ['items', 'labels','title','field'],
+    props: ['items', 'labels','title','field','value'],
     computed: {
         keys() {
             return Object.keys(this.items[0])
