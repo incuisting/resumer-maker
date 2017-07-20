@@ -50,11 +50,11 @@
 import ProfileEditor from './ProfileEditor'
 import ArrayEditor from './ArrayEditor'
 export default {
-    props:['resume'],
+    name:"editor",
     components: { ProfileEditor, ArrayEditor },
     computed:{
-        count(){
-            return this.$store.state.count
+        resume(){
+            return this.$store.state.resume
         }
     },
     data() {

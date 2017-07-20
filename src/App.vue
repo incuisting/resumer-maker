@@ -21,29 +21,7 @@ export default {
   store,
   data() {
     return {
-      previewMode: false,
-      resume: {
-        profile: {
-          name: '',
-          city: '',
-          birth: ''
-        },
-        workHistory: [
-          { company: '', content: '' }
-        ],
-        studyHistory: [
-          { school: '', duration: '', degree: '' }
-        ],
-        projects: [
-          { name: '', content: '' }
-        ],
-        awards: [
-          { name: '' }
-        ],
-        contacts: {
-          qq: '', wechat: '', phone: '', email: ''
-        }
-      }
+      previewMode: false
     }
   },
   methods: {
