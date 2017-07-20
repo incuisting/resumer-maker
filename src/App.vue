@@ -105,15 +105,15 @@ export default {
     }
   }
 
-  .previewMode>#topbar {
+  &.previewMode>#topbar {
     display: none;
   }
 
-  .previewMode #editor {
+  &.previewMode #editor {
     display: none;
   }
 
-  .previewMode #preview {
+  &.previewMode #preview {
     max-width: 800px;
     margin: 32px auto;
   }
@@ -122,7 +122,7 @@ export default {
     display: none;
   }
 
-  .previewMode #exitPreview {
+  &.previewMode #exitPreview {
     display: inline-block;
     position: fixed;
     right: 16px;
