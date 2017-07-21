@@ -91,7 +91,7 @@ export default {
         margin-top: 2em;
     }
     p {
-        white-space: pre-line;
+        white-space: pre-line; //忽略文字间的空格
     }
     section {
         >h2:first-child {
