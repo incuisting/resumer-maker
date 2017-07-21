@@ -14,15 +14,15 @@
             <li v-for="(item,index) in resume.config" v-show="item.field === selected" :key="index">
                 <div v-if="resume[item.field] instanceof Array">
                     <!--判断数据是否为数组  -->
-                    <div class="subitem" v-for="subitem in resume[item.field]">
-                        <div class="resumeField" v-for="(value,key) in subitem">
+                    <div class="subitem" v-for="(subitem,index) in resume[item.field]" :key="index">
+                        <div class="resumeField" v-for="(value,key) in subitem" :key="key">
                             <label> {{key}} </label>
                             <input type="text" :value="value">
                         </div>
                         <hr>
                     </div>
                 </div>
-                <div v-else class="resumeField" v-for="(value,key) in resume[item.field]">
+                <div v-else class="resumeField" v-for="(value,key) in resume[item.field]" :key="key">
                     <label> {{key}} </label>
                     <input type="text" v-model="resume[item.field][key]">
                 </div>
