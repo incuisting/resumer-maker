@@ -11,7 +11,7 @@ export default new Vuex.Store({
         resume: {
             config: [
                 { field: 'profile', icon: 'id' },
-                { field: 'work history', icon: 'work' },
+                { field: 'workHistory', icon: 'work' },
                 { field: 'education', icon: 'book' },
                 { field: 'projects', icon: 'heart' },
                 { field: 'awards', icon: 'cup' },
@@ -22,7 +22,7 @@ export default new Vuex.Store({
                 city: '',
                 title: ''
             },
-            'work history': [
+            workHistory: [
                 { company: 'AL', content: '我的第二份工作是' },
                 { company: 'TX', content: '我的第一份工作是' },
             ],
