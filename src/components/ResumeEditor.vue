@@ -3,14 +3,16 @@
         <nav>
             <ol>
                 <!--点击将selected置为当前点中的条目的item  -->
-                <li v-for="(item,index) in resume.visibleItems" :class="{active: item === selected}" @click="selected = item">
-                    {{index}}
+                <li v-for="(item,index) in resume.config" :class="{active: item === selected}" @click="selected = item">
+                    <svg class="icon">
+                        <use :xlink:href="`#icon-${item.icon}`"></use>
+                    </svg>
                 </li>
             </ol>
         </nav>
         <ol class="panels">
-            <li v-for="item in resume.visibleItems" v-show="item === selected">
-                {{resume[item]}}
+            <li v-for="item in resume.config" v-show="item.field === selected">
+                {{resume[item.field]}}
             </li>
         </ol>
     </div>
@@ -21,20 +23,26 @@ export default {
     name: 'ResumeEditor',
     data() {
         return {
-            selected: 'bio',
+            selected: 'profile',
             resume: {
-                visibleItems: ['bio', 'workHistory', 'education', 'projects', 'awards', 'contacts', 'others'],
-                bio: {
+                config: [
+                    { field: 'profile', icon: 'id' },
+                    { field: 'work history', icon: 'work' },
+                    { field: 'education', icon: 'book' },
+                    { field: 'projects', icon: 'heart' },
+                    { field: 'awards', icon: 'cup' },
+                    { field: 'contacts', icon: 'phone' },
+                ],
+                profile: {
                     name: '',
                     city: '',
                     title: ''
                 },
-                workHistory: [1],
+                'work history': [1],
                 education: [2],
                 projects: [3],
                 awards: [4],
                 contacts: [5],
-                others: [6]
             }
         }
     }
@@ -67,6 +75,11 @@ export default {
             }
         }
     }
+}
+
+svg.icon {
+    width: 24px; // 原设计稿 32px 不好看，改成 24px
+    height: 24px;
 }
 
 ol {
