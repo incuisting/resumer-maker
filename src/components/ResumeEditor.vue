@@ -3,7 +3,7 @@
         <nav>
             <ol>
                 <!--点击将selected置为当前点中的条目的item  -->
-                <li v-for="(item,index) in resume.config" :class="{active: item === selected}" @click="selected = item">
+                <li v-for="(item,index) in resume.config" :class="{active: item.field === selected}" @click="selected = item.field" :key="index">
                     <svg class="icon">
                         <use :xlink:href="`#icon-${item.icon}`"></use>
                     </svg>
@@ -11,8 +11,11 @@
             </ol>
         </nav>
         <ol class="panels">
-            <li v-for="item in resume.config" v-show="item.field === selected">
-                {{resume[item.field]}}
+            <li v-for="(item,index) in resume.config" v-show="item.field === selected" :key="index">
+                <div class="resumeField" v-for="(value,key) in resume[item.field]" :key="key">
+                    <label> {{key}} </label>
+                    <input type="text" v-model="resume[item.field][key]">
+                </div>
             </li>
         </ol>
     </div>
@@ -38,7 +41,10 @@ export default {
                     city: '',
                     title: ''
                 },
-                'work history': [1],
+                'work history': [
+                    { company: 'AL', content: '我的第二份工作是' },
+                    { company: 'TX', content: '我的第一份工作是' },
+                ],
                 education: [2],
                 projects: [3],
                 awards: [4],
@@ -49,7 +55,7 @@ export default {
 }
 </script>
  
- <style lang="scss">
+ <style scoped lang="scss">
 #resumeEditor {
     background: #ffffff;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
@@ -75,14 +81,33 @@ export default {
             }
         }
     }
-}
-
-svg.icon {
-    width: 24px; // 原设计稿 32px 不好看，改成 24px
-    height: 24px;
+    >.panels {
+        flex-grow: 1;
+        >li {
+            padding: 24px;
+        }
+    }
+    svg.icon {
+        width: 24px; // 原设计稿 32px 不好看，改成 24px
+        height: 24px;
+    }
 }
 
 ol {
     list-style: none;
+}
+
+.resumeField {
+    >label {
+        display: block;
+    }
+    input[type=text] {
+        margin: 16px 0;
+        border: 1px solid #ddd;
+        box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+        width: 100%;
+        height: 40px;
+        padding: 0 8px;
+    }
 }
 </style>

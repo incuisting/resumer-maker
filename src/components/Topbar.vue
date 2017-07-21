@@ -16,7 +16,7 @@ export default {
 }
 </script>
  
- <style scope lang="scss">
+ <style scoped lang="scss">
 //  如果使用 "scoped" 属性，那么所规定的样式只能应用到 style 元素的父元素及其子元素。
 #topbar {
     background: #ffffff;
