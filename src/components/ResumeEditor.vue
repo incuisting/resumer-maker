@@ -12,7 +12,17 @@
         </nav>
         <ol class="panels">
             <li v-for="(item,index) in resume.config" v-show="item.field === selected" :key="index">
-                <div class="resumeField" v-for="(value,key) in resume[item.field]" :key="key">
+                <div v-if="resume[item.field] instanceof Array">
+                    <!--判断数据是否为数组  -->
+                    <div class="subitem" v-for="subitem in resume[item.field]">
+                        <div class="resumeField" v-for="(value,key) in subitem">
+                            <label> {{key}} </label>
+                            <input type="text" :value="value">
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+                <div v-else class="resumeField" v-for="(value,key) in resume[item.field]">
                     <label> {{key}} </label>
                     <input type="text" v-model="resume[item.field][key]">
                 </div>
@@ -45,10 +55,22 @@ export default {
                     { company: 'AL', content: '我的第二份工作是' },
                     { company: 'TX', content: '我的第一份工作是' },
                 ],
-                education: [2],
-                projects: [3],
-                awards: [4],
-                contacts: [5],
+                education: [
+                    { school: 'AL', content: '文字' },
+                    { school: 'tx', content: '文字' },
+                ],
+                projects: [
+                    { name: 'project A', content: '文字' },
+                    { name: 'project b', content: '文字' },
+                ],
+                awards: [
+                    { name: 'awards A', content: '文字' },
+                    { name: 'awards b', content: '文字' },
+                ],
+                contacts: [
+                    { contact: 'phone', content: '13812345678' },
+                    { contact: 'qq', content: '12345678' },
+                ],
             }
         }
     }
@@ -109,5 +131,11 @@ ol {
         height: 40px;
         padding: 0 8px;
     }
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 24px 0;
 }
 </style>
