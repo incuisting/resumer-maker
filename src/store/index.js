@@ -46,12 +46,17 @@ export default new Vuex.Store({
         }
     },
     mutations: {
+        initState(state, payload) {
+            Object.assign(state, payload) //改变数据  还有个问题 assign是深拷贝还是浅拷贝？？
+        },
         switchTab(state, payload) {
             state.selected = payload //提交荷载
+            localStorage.setItem('state', JSON.stringify(state)) //每次切换标签保存一次localstorge
         },
         updateResume(state, { path, value }) {
             console.log('update')
             objectPath.set(state.resume, path, value)
+            localStorage.setItem('state', JSON.stringify(state)) //每次改变内容保存一次localstorge
         }
     }
 })

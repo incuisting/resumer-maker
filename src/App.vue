@@ -29,6 +29,11 @@ export default {
   components: { Topbar, ResumeEditor, ResumePreview },
   created() {
     document.body.insertAdjacentHTML('afterbegin', icons) //插入svgicon
+    let state = localStorage.getItem('state') //本地存储
+    if(state){
+      state = JSON.parse(state)
+    }
+    this.$store.commit('initState',state)
   }
 }
 </script>
