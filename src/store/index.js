@@ -7,33 +7,47 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     strict: true, //严格模式
     state: {
+        selected: 'profile',
         resume: {
+            config: [
+                { field: 'profile', icon: 'id' },
+                { field: 'work history', icon: 'work' },
+                { field: 'education', icon: 'book' },
+                { field: 'projects', icon: 'heart' },
+                { field: 'awards', icon: 'cup' },
+                { field: 'contacts', icon: 'phone' },
+            ],
             profile: {
                 name: '',
                 city: '',
-                birth: ''
+                title: ''
             },
-            workHistory: [
-                { company: '', content: '' }
+            'work history': [
+                { company: 'AL', content: '我的第二份工作是' },
+                { company: 'TX', content: '我的第一份工作是' },
             ],
-            studyHistory: [
-                { school: '', duration: '', degree: '' }
+            education: [
+                { school: 'AL', content: '文字' },
+                { school: 'tx', content: '文字' },
             ],
             projects: [
-                { name: '', content: '' }
+                { name: 'project A', content: '文字' },
+                { name: 'project b', content: '文字' },
             ],
             awards: [
-                { name: '' }
+                { name: 'awards A', content: '文字' },
+                { name: 'awards b', content: '文字' },
             ],
-            contacts: {
-                qq: '',
-                wechat: '',
-                phone: '',
-                email: ''
-            }
+            contacts: [
+                { contact: 'phone', content: '13812345678' },
+                { contact: 'qq', content: '12345678' },
+            ],
         }
     },
     mutations: {
+        switchTab(state, payload) {
+            state.selected = payload //提交荷载
+        },
         updateResume(state, { field, index, subfield, value }) {
             console.log('update')
             state.resume[field][index][subfield] = value
