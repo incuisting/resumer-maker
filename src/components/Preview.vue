@@ -1,6 +1,7 @@
 <template>
     <div id="preview">
-        {{resume}}
+         {{resume}} 
+        <!-- {{state}} -->
         <h1>{{resume.profile.name || '请填写姓名'}}</h1>
         <p>{{resume.profile.city || '请填写城市'}}</p>
         <p>{{resume.profile.birth || '请填写生日'}}</p>
@@ -30,6 +31,9 @@ export default {
     computed:{
         resume(){
             return this.$store.state.resume
+        },
+        state(){
+            return this.$store.state
         }
     },
     methods: {

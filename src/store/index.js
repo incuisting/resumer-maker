@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 
 export default new Vuex.Store({
+    strict: true, //严格模式
     state: {
         resume: {
             profile: {
@@ -33,8 +34,9 @@ export default new Vuex.Store({
         }
     },
     mutations: {
-        updateResume(state, { field, subfield, value }) {
-            state.resume[field][subfield] = value
+        updateResume(state, { field, index, subfield, value }) {
+            console.log('update')
+            state.resume[field][index][subfield] = value
         }
     }
 })
