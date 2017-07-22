@@ -6,12 +6,12 @@
                 <div class="userActions" v-if="logined">
                     <!--对用户的id进行判断  如果存在就显示登出  -->
                     <span>你好{{user.username}}</span>
-                    <a href="#" class="button">登出</a>
+                    <a href="#" class="button" @click.prevent ="signOut">登出</a>
                 </div>
                 <div v-else class="userAcitons">
                     <a class="button primary" href="#" @click.prevent="signUpDialogVisible =true">注册</a>
                     <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
-                        <SignUpForm @success="login($event)" />
+                        <SignUpForm @success="signIn($event)" />
     
                     </MyDialog>
                     <a class="button" href="#">登录</a>
@@ -26,6 +26,8 @@
 <script>
 import MyDialog from './MyDialog'
 import SignUpForm from './SignUpForm'
+import AV from '../lib/leancloud'
+
 export default {
     name: 'Topbar',
     data() {
@@ -43,7 +45,11 @@ export default {
     },
     components: { MyDialog, SignUpForm },
     methods: {
-        login(user) {
+        signOut(){
+            AV.User.logOut()
+            this.$store.commit('removeUser')//vuex发起一个移除用户的commit
+        },
+        signIn(user) {
             this.signUpDialogVisible = false
             this.$store.commit('setUser', user)
             console.log("user", user)
