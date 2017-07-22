@@ -9,6 +9,10 @@ export default new Vuex.Store({
     strict: true, //严格模式
     state: {
         selected: 'profile',
+        user: {
+            id: '',
+            username: ''
+        },
         resume: {
             config: [
                 { field: 'profile', icon: 'id' },
@@ -57,6 +61,10 @@ export default new Vuex.Store({
             console.log('update')
             objectPath.set(state.resume, path, value)
             localStorage.setItem('state', JSON.stringify(state)) //每次改变内容保存一次localstorge
+        },
+        setUser(state, payload) {
+            Object.assign(state.user, payload)
+            console.log('state.user', state.user)
         }
     }
 })
