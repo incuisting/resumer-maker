@@ -12,7 +12,7 @@
         </nav>
         <ol class="panels">
             <li v-for="(item,index) in resume.config" v-show="item.field === selected" :key="index">
-                <div v-if="resume[item.field] instanceof Array">
+                <div v-if="item.type === 'array' ">
                     <!--判断数据是否为数组  -->
                     <div class="subitem" v-for="(subitem,index) in resume[item.field]" :key="index">
                         <div class="resumeField" v-for="(value,key) in subitem" :key="key">
