@@ -1,6 +1,6 @@
 <template>
     <div>
-        <form @submit.prevent="signUp">
+        <form @submit.prevent="signIn">
             <div class="row">
                 <label>用户名</label>
                 <input type="text" v-model="formData.username" required>
@@ -38,7 +38,7 @@ export default {
         signIn() {
             let { username, password } = this.formData//ed6 对象解构
             AV.User.logIn(username,password).then(()=>{
-                this.$store.commit('setUser',getAVUser())
+                this.$emit('success',getAVUser())
             }),(error)=>{
                 this.errorMessage = getErrorMessage(error)
             }
