@@ -14,34 +14,19 @@ export default new Vuex.Store({
             username: ''
         },
         resume: {
-            config: [
-                { field: 'profile', icon: 'id' },
-                { field: 'workHistory', icon: 'work' },
-                { field: 'education', icon: 'book' },
-                { field: 'projects', icon: 'heart' },
-                { field: 'awards', icon: 'cup' },
-                { field: 'contacts', icon: 'phone' },
+            config: [{ field: 'profile', icon: 'id', key: ['name', 'city', 'title', 'birthday'] },
+                { field: 'workHistory', icon: 'work', key: ['company', 'content'] },
+                { field: 'education', icon: 'book', key: ['school', 'content'] },
+                { field: 'projects', icon: 'heart', key: ['name', 'content'] },
+                { field: 'awards', icon: 'cup', key: ['name', 'content'] },
+                { field: 'contacts', icon: 'phone', key: ['contact', 'content'] },
             ],
-            profile: {
-                name: '',
-                city: '',
-                title: ''
-            },
-            workHistory: [
-                { company: '', content: '' }
-            ],
-            education: [
-                { school: '', content: '' }
-            ],
-            projects: [
-                { name: '', content: '' }
-            ],
-            awards: [
-                { name: '', content: '' },
-            ],
-            contacts: [
-                { contact: '', content: '' }
-            ],
+            profile: {},
+            workHistory: [],
+            education: [],
+            projects: [],
+            awards: [],
+            contacts: [],
         }
     },
     mutations: {
