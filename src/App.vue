@@ -1,77 +1,117 @@
 <template>
-  <div>
+  <div id="app" :class="{previewMode : previewMode}">
     <div class=page>
       <header>
-        <Topbar/>
+        <Topbar @preview="preview" />
       </header>
       <main>
         <ResumeEditor/>
         <ResumePreview/>
       </main>
+      <el-button id="exitPreview" v-on:click="exitPreview">退出预览</el-button>
     </div>
   </div>
 </template>
 
 <script>
-  import Topbar from './components/Topbar'
-  import ResumeEditor from './components/ResumeEditor'
-  import ResumePreview from './components/ResumePreview'
-  import icons from './assets/icons'
-  import store from './store/index'
-  import AV from './lib/leancloud'
-  import getAVUser from './lib/getAVUser'
-  export default {
-    name: 'app',
-    store,
-    components: { Topbar, ResumeEditor, ResumePreview},
-    created() {
-      document.body.insertAdjacentHTML('afterbegin', icons) //
-      let state = localStorage.getItem('state')
-      if(state){
-        state = JSON.parse(state) 
-      }
-      // 先临时关闭一下，以免影响我开发
-      this.$store.commit('initState', state)
-      this.$store.commit('setUser', getAVUser())
+import Topbar from './components/Topbar'
+import ResumeEditor from './components/ResumeEditor'
+import ResumePreview from './components/ResumePreview'
+import icons from './assets/icons'
+import store from './store/index'
+import AV from './lib/leancloud'
+import getAVUser from './lib/getAVUser'
+export default {
+  name: 'app',
+  store,
+  data() {
+    return {
+      previewMode: false
     }
+  },
+  components: { Topbar, ResumeEditor, ResumePreview },
+  methods: {
+    exitPreview() {
+      this.previewMode = false
+    },
+    preview() {
+      this.previewMode = true
+    }
+  },
+  created() {
+    document.body.insertAdjacentHTML('afterbegin', icons) //
+    let state = localStorage.getItem('state')
+    if (state) {
+      state = JSON.parse(state)
+    }
+    // 先临时关闭一下，以免影响我开发
+    this.$store.commit('initState', state)
+    this.$store.commit('setUser', getAVUser())
   }
+}
 </script>
 
 <style lang="scss">
-  .page{
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background: #EAEBEC;
-    >main{
-      flex-grow: 1;  
-    }
-    >main{
-      min-width: 1024px;
-      max-width: 1440px;
-      margin-top: 16px;
-      margin-bottom: 16px;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 16px;
-      width: 100%; /* 试试不加这句会怎样 */
-      align-self: center;
-    }
-  }
-  #resumeEditor{
-    min-width: 35%;
-    background: #444;
-  }
-  #resumePreview{
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #EAEBEC;
+  >main {
     flex-grow: 1;
-    margin-left: 16px;
-    background: #777;
   }
-  svg.icon{
-    height: 1em;
-    width: 1em;
-    fill: currentColor;
-    vertical-align: -0.1em;
-    font-size:16px;
+  >main {
+    min-width: 1024px;
+    max-width: 1440px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px;
+    width: 100%;
+    /* 试试不加这句会怎样 */
+    align-self: center;
   }
+}
+
+#resumeEditor {
+  min-width: 35%;
+  background: #444;
+}
+
+#resumePreview {
+  flex-grow: 1;
+  margin-left: 16px;
+  background: #777;
+}
+
+svg.icon {
+  height: 1em;
+  width: 1em;
+  fill: currentColor;
+  vertical-align: -0.1em;
+  font-size: 16px;
+}
+
+#app {
+  &.previewMode #topbar {
+    display: none;
+  }
+  &.previewMode #resumeEditor {
+    display: none;
+  }
+  &.previewMode #resumePreview {
+    max-width: 800px;
+    margin: 32px auto;
+  }
+  #exitPreview {
+    display: none;
+  }
+  &.previewMode #exitPreview {
+    display: inline-block;
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+  }
+}
 </style>

@@ -7,13 +7,13 @@
                     <!--对用户的id进行判断  如果存在就显示登出  -->
                     <span class="welcome">你好,{{user.username}}</span>
                     <a href="#" class="button" @click.prevent="signOut">登出</a>
+                    <a class="button primary" href="#" @click.prevent="preview">预览</a>
                 </div>
                 <div v-else class="userAcitons">
                     <a class="button primary" href="#" @click.prevent="signUpDialogVisible =true">注册</a>
     
                     <a class="button" href="#" @click.prevent="signInDialogVisible = true">登录</a>
-    
-                </div>
+                </div>                  
             </div>
         </div>
         <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
@@ -57,6 +57,9 @@ export default {
             this.signInDialogVisible = false
             this.$store.commit('setUser', user)
             console.log("$event", user)
+        },
+        preview() {
+            this.$emit('preview')
         }
     }
 }
