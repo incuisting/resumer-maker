@@ -13,45 +13,49 @@ export default new Vuex.Store({
             id: '',
             username: ''
         },
-        resume: {
-            config: [{ field: 'profile', icon: 'id', key: ['name', 'city', 'title', 'birthday'] },
-                { field: 'workHistory', icon: 'work', type: 'array', key: ['company', 'content'] },
-                { field: 'education', icon: 'book', type: 'array', key: ['school', 'content'] },
-                { field: 'projects', icon: 'heart', type: 'array', key: ['name', 'content'] },
-                { field: 'awards', icon: 'cup', type: 'array', key: ['name', 'content'] },
-                { field: 'contacts', icon: 'phone', type: 'array', key: ['contact', 'content'] },
-            ]
-        }
+        resumeConfig: [
+            { field: 'profile', icon: 'id', keys: ['name', 'city', 'title', 'birthday'] },
+            { field: 'workHistory', icon: 'work', type: 'array', keys: ['company', 'content'] },
+            { field: 'education', icon: 'book', type: 'array', keys: ['school', 'content'] },
+            { field: 'projects', icon: 'heart', type: 'array', keys: ['name', 'content'] },
+            { field: 'awards', icon: 'cup', type: 'array', keys: ['name', 'content'] },
+            { field: 'contacts', icon: 'phone', type: 'array', keys: ['contact', 'content'] },
+
+        ],
+        resume: {}
     },
     mutations: {
         initState(state, payload) {
-            state.resume.config.map((item) => {
+            console.log('state.resumeConfig', state.resumeConfig)
+            state.resumeConfig.map((item) => {
+                console.log('item.type', item)
                 if (item.type === 'array') {
+                    //state.resume[item.field] = [] // 这样写 Vue 无法监听属性变化
                     Vue.set(state.resume, item.field, [])
                 } else {
+                    console.log(11)
+
+                    //state.resume[item.field] = {} // 这样写 Vue 无法监听属性变化
                     Vue.set(state.resume, item.field, {})
                     item.keys.map((key) => {
+                        //state.resume[item.field][key] = '' // 这样写 Vue 无法监听属性变化
                         Vue.set(state.resume[item.field], key, '')
                     })
                 }
-
             })
-
-
-            Object.assign(state, payload) //改变数据  还有个问题 assign是深拷贝还是浅拷贝？？
+            Object.assign(state, payload)
+            console.log('state.resume', state.resume)
         },
         switchTab(state, payload) {
             state.selected = payload //提交荷载
             localStorage.setItem('state', JSON.stringify(state)) //每次切换标签保存一次localstorge
         },
         updateResume(state, { path, value }) {
-            console.log('update')
             objectPath.set(state.resume, path, value)
             localStorage.setItem('state', JSON.stringify(state)) //每次改变内容保存一次localstorge
         },
         setUser(state, payload) {
             Object.assign(state.user, payload)
-            console.log('state.user', state.user)
         },
         removeUser(state) {
             state.user.id = null
