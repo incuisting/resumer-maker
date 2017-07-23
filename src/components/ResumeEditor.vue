@@ -14,6 +14,7 @@
         <h2 class="item-title">{{item.template.title}}</h2>
         <div v-if="item.type === 'array'">
           <div class="subitem" v-for="(subitem, i) in resume[item.field]">
+              <el-button class="remove" type="danger" @click="removeResumeSubfield(item.field, i)" size="mini">删除</el-button>
             <div class="resumeField" v-for="(value,key) in subitem">
               <label> {{item.template[key]}} </label>
               <input type="text" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`, $event.target.value)">
@@ -102,6 +103,14 @@ export default {
       .item-title {
         margin-bottom: .5em;
       }
+     .subitem{
+       position: relative;
+       .remove{
+         position: absolute;
+         right: 0;
+         top: 0;
+       }
+     }
     }
   }
   svg.icon {
