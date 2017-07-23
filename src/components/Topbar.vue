@@ -5,8 +5,8 @@
             <div class="actions">
                 <div class="userActions" v-if="logined">
                     <!--对用户的id进行判断  如果存在就显示登出  -->
-                    <span>你好{{user.username}}</span>
-                    <a href="#" class="button" @click.prevent ="signOut">登出</a>
+                    <span class="welcome">你好,{{user.username}}</span>
+                    <a href="#" class="button" @click.prevent="signOut">登出</a>
                 </div>
                 <div v-else class="userAcitons">
                     <a class="button primary" href="#" @click.prevent="signUpDialogVisible =true">注册</a>
@@ -14,7 +14,10 @@
                         <SignUpForm @success="signIn($event)" />
     
                     </MyDialog>
-                    <a class="button" href="#">登录</a>
+                    <a class="button" href="#" @click.prevent="signInDialogVisible = true">登录</a>
+                    <MyDialog title="登录" :visible="signInDialogVisible" @close="signInDialogVisible = false">
+                        <SignInForm />
+                    </MyDialog>
                 </div>
                 <button class="button primary">保存</button>
                 <button class="button">预览</button>
@@ -26,26 +29,28 @@
 <script>
 import MyDialog from './MyDialog'
 import SignUpForm from './SignUpForm'
+import SignInForm from './SignInForm'
 import AV from '../lib/leancloud'
 
 export default {
     name: 'Topbar',
     data() {
         return {
-            signUpDialogVisible: false
+            signUpDialogVisible: false,
+            signInDialogVisible: false
         }
     },
     computed: {
         user() {
             return this.$store.state.user
         },
-        logined(){
+        logined() {
             return this.user.id
         }
     },
-    components: { MyDialog, SignUpForm },
+    components: { MyDialog, SignUpForm, SignInForm },
     methods: {
-        signOut(){
+        signOut() {
             AV.User.logOut()
             this.$store.commit('removeUser')//vuex发起一个移除用户的commit
         },
@@ -103,10 +108,14 @@ export default {
         color: white;
     }
 }
-.actions{
+
+.actions {
     display: flex;
-    .userActions{
+    .userActions {
         margin-right: 3em;
+        .welcome{
+            margin-right: .5em
+        }
     }
 }
 </style>
