@@ -20,12 +20,12 @@
             </div>
             <hr>
           </div>
+          <el-button type="success"  @click="addResumeSubfield(item.field)">添加</el-button>
         </div>
         <div v-else class="resumeField" v-for="(value,key) in resume[item.field]">
           <label> {{item.template[key]}} </label>
           <input type="text" :value="value" @input="changeResumeField(`${item.field}.${key}`, $event.target.value)">
         </div>
-        <el-button type="success">添加</el-button>
       </li>
     </ol>
   </div>
@@ -56,6 +56,13 @@ export default {
         path,
         value
       })
+    },
+    addResumeSubfield(field) {
+      console.log(1);
+      this.$store.commit('addResumeSubfield', { field })
+    },
+    removeResumeSubfield(field, index) {
+      this.$store.commit('removeResumeSubfield', { field, index })
     }
   }
 }

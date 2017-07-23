@@ -33,7 +33,7 @@
             <h2>毕业学校</h2>
             <ol>
                 <li v-for="item in resume.education">
-                    <h3>{{item.company}}</h3>
+                    <h3>{{item.school}}</h3>
                     <p v-show="item.content">{{item.content}}</p>
                 </li>
             </ol>
