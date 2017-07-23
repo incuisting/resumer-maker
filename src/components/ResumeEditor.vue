@@ -74,7 +74,7 @@ export default {
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: row;
-  overflow: auto;
+  overflow: hidden;
   >nav {
     width: 80px;
     background: black;
@@ -96,6 +96,7 @@ export default {
   }
   >.panels {
     flex-grow: 1;
+    overflow: auto;
     >li {
       padding: 24px;
       .item-title {
