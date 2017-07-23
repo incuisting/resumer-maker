@@ -28,24 +28,19 @@ export default new Vuex.Store({
                 title: ''
             },
             workHistory: [
-                { company: 'AL', content: '我的第二份工作是' },
-                { company: 'TX', content: '我的第一份工作是' },
+                { company: '', content: '' }
             ],
             education: [
-                { school: 'AL', content: '文字' },
-                { school: 'tx', content: '文字' },
+                { school: '', content: '' }
             ],
             projects: [
-                { name: 'project A', content: '文字' },
-                { name: 'project b', content: '文字' },
+                { name: '', content: '' }
             ],
             awards: [
-                { name: 'awards A', content: '文字' },
-                { name: 'awards b', content: '文字' },
+                { name: '', content: '' },
             ],
             contacts: [
-                { contact: 'phone', content: '13812345678' },
-                { contact: 'qq', content: '12345678' },
+                { contact: '', content: '' }
             ],
         }
     },
