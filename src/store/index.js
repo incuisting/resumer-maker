@@ -20,17 +20,24 @@ export default new Vuex.Store({
                 { field: 'projects', icon: 'heart', type: 'array', key: ['name', 'content'] },
                 { field: 'awards', icon: 'cup', type: 'array', key: ['name', 'content'] },
                 { field: 'contacts', icon: 'phone', type: 'array', key: ['contact', 'content'] },
-            ],
-            profile: {},
-            workHistory: [],
-            education: [],
-            projects: [],
-            awards: [],
-            contacts: [],
+            ]
         }
     },
     mutations: {
         initState(state, payload) {
+            state.resume.config.map((item) => {
+                if (item.type === 'array') {
+                    Vue.set(state.resume, item.field, [])
+                } else {
+                    Vue.set(state.resume, item.field, {})
+                    item.keys.map((key) => {
+                        Vue.set(state.resume[item.field], key, '')
+                    })
+                }
+
+            })
+
+
             Object.assign(state, payload) //改变数据  还有个问题 assign是深拷贝还是浅拷贝？？
         },
         switchTab(state, payload) {

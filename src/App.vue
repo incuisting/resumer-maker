@@ -34,7 +34,7 @@ export default {
     document.body.insertAdjacentHTML('afterbegin', icons) //插入svgicon
     let state = localStorage.getItem('state') //本地存储
     if(state){
-      state = JSON.parse(state)
+      // state = JSON.parse(state)
     }
     this.$store.commit('initState',state)
     this.$store.commit('setUser',getAVUser())
