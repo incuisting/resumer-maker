@@ -3,12 +3,12 @@
     <div class=page>
       <header>
         <Topbar @preview="preview" />
+        <ResumeEditor/>
       </header>
       <main>
-        <ResumeEditor/>
         <ResumePreview/>
       </main>
-      <el-button id="exitPreview" v-on:click="exitPreview">退出预览</el-button>
+      <el-button id="exitPreview" v-on:click="exitPreview">退出全屏</el-button>
     </div>
   </div>
 </template>
@@ -52,38 +52,36 @@ export default {
 </script>
 
 <style lang="scss">
-.page {
-  height: 100vh;
+#app {
   display: flex;
-  flex-direction: column;
-  background: #EAEBEC;
-  >main {
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background:#222629; 
+}
+
+.page {
+  width: 80vw;
+  height: 80vh;
+  background: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+
+  display: flex;
+  header {
+    width: 40em;
+    display: flex;
+    flex-direction: column;
+    #resumeEditor{
+      flex-grow: 1;
+    }
+  }
+  
+  main {
     flex-grow: 1;
   }
-  >main {
-    min-width: 1024px;
-    max-width: 1440px;
-    margin-top: 16px;
-    margin-bottom: 16px;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 16px;
-    width: 100%;
-    /* 试试不加这句会怎样 */
-    align-self: center;
-  }
 }
 
-#resumeEditor {
-  min-width: 35%;
-  background: #444;
-}
-
-#resumePreview {
-  flex-grow: 1;
-  margin-left: 16px;
-  background: #777;
-}
 
 svg.icon {
   height: 1em;
