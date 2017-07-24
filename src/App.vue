@@ -79,6 +79,9 @@ export default {
   
   main {
     flex-grow: 1;
+    #resumePreview{
+      margin-left: 8px;
+    }
   }
 }
 
