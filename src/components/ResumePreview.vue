@@ -1,6 +1,6 @@
 <template>
     <div id="resumePreview">
-        <header v-show="resume.profile">
+        <header v-show="resume.profile && resume.profile.name">
             <section data-name="profile" v-show="resume.profile && resume.profile.name">
                 <h1>
                     {{resume.profile.name}}

@@ -45,7 +45,7 @@ export default {
     }
   },
   created() {
-    document.body.insertAdjacentHTML('afterbegin', icons) //
+    document.body.insertAdjacentHTML('afterbegin', icons) //插入icon的svg
     let state = localStorage.getItem('state')
     if (state) {
       state = JSON.parse(state)
@@ -102,7 +102,7 @@ svg.icon {
 
 #app {
   &.previewMode{
-    height: 100%;
+    overflow: auto;
   }
   &.previewMode #topbar {
     display: none;
