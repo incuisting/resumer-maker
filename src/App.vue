@@ -1,6 +1,6 @@
 <template>
   <div id="app" :class="{previewMode : previewMode}">
-    <div class=page>
+    <div :class="{page:page,fullPage:fullPage}">
       <header>
         <Topbar @preview="preview" />
         <ResumeEditor/>
@@ -26,16 +26,22 @@ export default {
   store,
   data() {
     return {
-      previewMode: false
+      previewMode: false,
+      page:true,
+      fullPage:false
     }
   },
   components: { Topbar, ResumeEditor, ResumePreview },
   methods: {
     exitPreview() {
       this.previewMode = false
+      this.fullPage = false
+      this.page = true
     },
     preview() {
       this.previewMode = true
+      this.fullPage = true
+      this.page = false
     }
   },
   created() {
@@ -80,7 +86,7 @@ export default {
   main {
     flex-grow: 1;
     #resumePreview{
-      margin-left: 8px;
+      // margin-left: 8px;
     }
   }
 }
@@ -95,6 +101,9 @@ svg.icon {
 }
 
 #app {
+  &.previewMode{
+    height: 100%;
+  }
   &.previewMode #topbar {
     display: none;
   }
@@ -102,8 +111,8 @@ svg.icon {
     display: none;
   }
   &.previewMode #resumePreview {
-    max-width: 800px;
-    margin: 32px auto;
+    min-width: 976px;
+    margin: 0 auto;
   }
   #exitPreview {
     display: none;
