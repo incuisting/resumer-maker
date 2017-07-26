@@ -7,13 +7,30 @@
                 </h1>
                 <h2>{{resume.profile.title}}</h2>
                 <p>
-                    <small>{{resume.profile.city}}</small>
-                    <small>{{resume.profile.birthday}}</small>
+                    <small>现居住：{{resume.profile.city}}</small>
                 </p>
+                <p>
+                    <small>出生年月：{{resume.profile.birthday}}</small>
+                </p>
+            </section>
+            <section data-name="contacts" v-if="resume.contacts &&resume.contacts.length>0">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-phone"></use>
+                </svg>
+                <h2>联系方式</h2>
+                <table>
+                    <tr v-for="item in resume.contacts">
+                        <td>{{item.contact}}</td>
+                        <td v-show="item.content"> {{item.content}} </td>
+                    </tr>
+                </table>
             </section>
         </header>
         <main>
             <section data-name="projects" v-if="resume.projects && resume.projects.length>0">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-heart"></use>
+                </svg>
                 <h2>项目经历</h2>
                 <ol>
                     <li v-for="item in resume.projects">
@@ -23,6 +40,9 @@
                 </ol>
             </section>
             <section data-name="workHistory" v-if="resume.workHistory &&resume.workHistory.length>0">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-work"></use>
+                </svg>
                 <h2>工作经历</h2>
                 <ol>
                     <li v-for="item in resume.workHistory">
@@ -33,6 +53,9 @@
             </section>
     
             <section data-name="education" v-if="resume.education &&resume.education.length>0">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-book"></use>
+                </svg>
                 <h2>毕业学校</h2>
                 <ol>
                     <li v-for="item in resume.education">
@@ -42,6 +65,9 @@
                 </ol>
             </section>
             <section data-name="awards" v-if="resume.awards &&resume.awards.length>0">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-cup"></use>
+                </svg>
                 <h2>获奖情况</h2>
                 <ol>
                     <li v-for="item in resume.awards">
@@ -51,15 +77,6 @@
                 </ol>
             </section>
     
-            <section data-name="contacts" v-if="resume.contacts &&resume.contacts.length>0">
-                <h2>联系方式</h2>
-                <table>
-                    <tr v-for="item in resume.contacts">
-                        <td>{{item.contact}}</td>
-                        <td v-show="item.content"> {{item.content}} </td>
-                    </tr>
-                </table>
-            </section>
         </main>
     </div>
 </template>
@@ -84,23 +101,50 @@ export default {
     background: #ffffff;
     color: #1a1a1a;
     line-height: 1.2; // ol{ list-style: none; }
-    overflow: auto;
+    overflow: hidden;
     display: flex;
     header {
         width: 32%;
         padding: 64px;
         background: #1a1a1a;
         color: #fff;
-        h1{
+        h1 {
             // font-weight: 700;
         }
-        h2,p{
+        h2,
+        p {
             color: rgba(255, 255, 255, 0.88);
         }
     }
     main {
         flex-grow: 1;
-        padding: 64px;
+        padding: 14px 96px 64px 96px;
+        overflow: auto;
+        section {
+            position: relative;
+            margin-top: 48px;
+            h2,
+            h3 {
+                font-size: 16px;
+                font-weight: bold;
+            }
+            h3 {
+                font-size: 14px;
+                margin-bottom: .3em;
+            }
+            ol {
+                margin-top: 24px;
+                li {
+                    margin-bottom: 24px;
+                }
+            }
+            svg.icon {
+                position: absolute;
+                fill: #1a1a1a;
+                top: 2px;
+                left: -24px;
+            }
+        }
     }
     * {
         box-sizing: border-box;
@@ -117,17 +161,16 @@ export default {
         >h2:first-child {
             display: inline-block;
             padding: .2em;
-            margin-bottom: .5em;
-            font-size: 16px;
+            margin-bottom: .5em; // font-size: 16px;
         }
     }
-    section[data-name="profile"],
-    section[data-name="workHistory"],
-    section[data-name="projects"],
-    section[data-name="awards"] {
+    section[data-name="profile"] {
         >h1 {
             margin: .1em 0;
             font-size: 4em;
+        }
+        p {
+            margin-top: 8px;
         }
     }
     section[data-name="workHistory"] {
@@ -137,19 +180,29 @@ export default {
         li {
             h3 {
                 // border-bottom: 1px solid #999;
-                padding-bottom: .3em;
-                margin-bottom: .3em;
             }
         }
     }
-    section[data-name="education"] {
-        li {
-            line-height: 1.5;
-        }
-    }
     section[data-name="contacts"] {
+        position: relative;
+        h2 {
+            margin-left: 24px;
+            font-size: 17px;
+            font-weight: 700;
+        }
+        svg.icon {
+            position: absolute;
+            fill: #ffffff;
+            top: 4px;
+            left: 0;
+        }
+        table {
+            margin-top: 8px;
+        }
         td:first-child {
             padding-right: 1em;
+            font-weight: 700;
+            text-transform: uppercase;
         }
     }
 }
