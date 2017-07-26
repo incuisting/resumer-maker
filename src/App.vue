@@ -102,7 +102,7 @@ svg.icon {
 
 #app {
   &.previewMode{
-    overflow: auto;
+    overflow: auto; //使得全屏显示时的底部白边
   }
   &.previewMode #topbar {
     display: none;

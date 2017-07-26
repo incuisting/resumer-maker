@@ -1,31 +1,33 @@
 <template>
     <div id="resumePreview">
-        <header v-show="resume.profile && resume.profile.name">
-            <section data-name="profile" v-show="resume.profile && resume.profile.name">
-                <h1>
-                    {{resume.profile.name}}
-                </h1>
-                <h2>{{resume.profile.title}}</h2>
-                <p>
-                    <small>现居住：{{resume.profile.city}}</small>
-                </p>
-                <p>
-                    <small>出生年月：{{resume.profile.birthday}}</small>
-                </p>
-            </section>
-            <section data-name="contacts" v-if="resume.contacts &&resume.contacts.length>0">
-                <svg class="icon" aria-hidden="true">
-                    <use xlink:href="#icon-phone"></use>
-                </svg>
-                <h2>联系方式</h2>
-                <table>
-                    <tr v-for="item in resume.contacts">
-                        <td>{{item.contact}}</td>
-                        <td v-show="item.content"> {{item.content}} </td>
-                    </tr>
-                </table>
-            </section>
-        </header>
+        <transition name="slide-fade">
+            <header v-show="resume.profile && resume.profile.name">
+                <section data-name="profile" v-show="resume.profile && resume.profile.name">
+                    <h1>
+                        {{resume.profile.name}}
+                    </h1>
+                    <h2>{{resume.profile.title}}</h2>
+                    <p>
+                        <small>现居住：{{resume.profile.city}}</small>
+                    </p>
+                    <p>
+                        <small>出生年月：{{resume.profile.birthday}}</small>
+                    </p>
+                </section>
+                <section data-name="contacts" v-if="resume.contacts &&resume.contacts.length>0">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-phone"></use>
+                    </svg>
+                    <h2>联系方式</h2>
+                    <table>
+                        <tr v-for="item in resume.contacts">
+                            <td>{{item.contact}}</td>
+                            <td v-show="item.content"> {{item.content}} </td>
+                        </tr>
+                    </table>
+                </section>
+            </header>
+        </transition>
         <main>
             <section data-name="projects" v-if="resume.projects && resume.projects.length>0">
                 <svg class="icon" aria-hidden="true">
@@ -102,7 +104,21 @@ export default {
     color: #1a1a1a;
     line-height: 1.2; // ol{ list-style: none; }
     overflow: hidden;
-    display: flex;
+    display: flex; 
+    // 动画
+    .slide-fade-enter-active {
+        transition: all .3s ease;
+    }
+    .slide-fade-leave-active {
+        transition: all .3s ease;
+    }
+    .slide-fade-enter,
+    .slide-fade-leave-to
+    /* .slide-fade-leave-active for below version 2.1.8 */
+    {
+        transform: translateX(10px);
+        opacity: 0;
+    }
     header {
         width: 32%;
         padding: 64px;
