@@ -63,9 +63,11 @@ export default {
   height: 100vh;
   justify-content: center;
   align-items: center;
-  background:#222629; 
+  background:url('./assets/images/background.jpg'); 
 }
-
+.fullPage{
+  margin: 160px 0 24px 0;
+}
 .page {
   width: 80vw;
   height: 80vh;
