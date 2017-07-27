@@ -17,7 +17,7 @@
             </div>
         </div>
         <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
-            <SignUpForm @success="signIn($event)" />
+            <SignUpForm @success="signUp($event)" />
         </MyDialog>
         <MyDialog title="登录" :visible="signInDialogVisible" @close="signInDialogVisible = false">
             <SignInForm @success="signIn($event)" />
@@ -57,6 +57,10 @@ export default {
             this.signInDialogVisible = false
             this.$store.commit('setUser', user)
             console.log("$event", user)
+        },
+        signUp(user){
+            this.signUpDialogVisible = false
+            this.$store.commit('setUser',user)
         },
         preview() {
             this.$emit('preview')
