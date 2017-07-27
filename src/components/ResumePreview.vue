@@ -29,56 +29,57 @@
             </header>
         </transition>
         <main>
-            <section data-name="projects" v-if="resume.projects && resume.projects.length>0">
-                <svg class="icon" aria-hidden="true">
-                    <use xlink:href="#icon-heart"></use>
-                </svg>
-                <h2>项目经历</h2>
-                <ol>
-                    <li v-for="item in resume.projects">
-                        <h3>{{item.name}}</h3>
-                        <p v-show="item.content"> {{item.content}} </p>
-                    </li>
-                </ol>
-            </section>
-            <section data-name="workHistory" v-if="resume.workHistory &&resume.workHistory.length>0">
-                <svg class="icon" aria-hidden="true">
-                    <use xlink:href="#icon-work"></use>
-                </svg>
-                <h2>工作经历</h2>
-                <ol>
-                    <li v-for="item in resume.workHistory">
-                        <h3>{{item.company}}</h3>
-                        <p v-show="item.content">{{item.content}}</p>
-                    </li>
-                </ol>
-            </section>
+             <transition-group  tag="section" name="slide-fade"> 
+                <section data-name="projects" v-if="resume.projects && resume.projects.length>0" :key="0">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-heart"></use>
+                    </svg>
+                    <h2>项目经历</h2>
+                    <ol>
+                        <li v-for="(item,index) in resume.projects" :key="index">
+                            <h3>{{item.name}}{{index}}</h3>
+                            <p v-show="item.content"> {{item.content}} </p>
+                        </li>
+                    </ol>
+                </section>
+                <section data-name="workHistory" v-if="resume.workHistory &&resume.workHistory.length>0" :key="1">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-work"></use>
+                    </svg>
+                    <h2>工作经历</h2>
+                    <ol>
+                        <li v-for="(item,index) in resume.workHistory" :key="index">
+                            <h3>{{item.company}}{{index}}</h3>
+                            <p v-show="item.content">{{item.content}}</p>
+                        </li>
+                    </ol>
+                </section>
     
-            <section data-name="education" v-if="resume.education &&resume.education.length>0">
-                <svg class="icon" aria-hidden="true">
-                    <use xlink:href="#icon-book"></use>
-                </svg>
-                <h2>毕业学校</h2>
-                <ol>
-                    <li v-for="item in resume.education">
-                        <h3>{{item.school}}</h3>
-                        <p v-show="item.content">{{item.content}}</p>
-                    </li>
-                </ol>
-            </section>
-            <section data-name="awards" v-if="resume.awards &&resume.awards.length>0">
-                <svg class="icon" aria-hidden="true">
-                    <use xlink:href="#icon-cup"></use>
-                </svg>
-                <h2>获奖情况</h2>
-                <ol>
-                    <li v-for="item in resume.awards">
-                        <h3>{{item.name}}</h3>
-                        <p v-show="item.content"> {{item.content}} </p>
-                    </li>
-                </ol>
-            </section>
-    
+                <section data-name="education" v-if="resume.education &&resume.education.length>0" :key="2">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-book"></use>
+                    </svg>
+                    <h2>毕业学校</h2>
+                    <ol>
+                        <li v-for="(item,index) in resume.education" :key="index">
+                            <h3>{{item.school}}</h3>
+                            <p v-show="item.content">{{item.content}}</p>
+                        </li>
+                    </ol>
+                </section>
+                <section data-name="awards" v-if="resume.awards &&resume.awards.length>0" :key="3">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-cup"></use>
+                    </svg>
+                    <h2>获奖情况</h2>
+                    <ol>
+                        <li v-for="(item,index) in resume.awards" :key="index">
+                            <h3>{{item.name}}</h3>
+                            <p v-show="item.content"> {{item.content}} </p>
+                        </li>
+                    </ol>
+                </section>
+             </transition-group> 
         </main>
     </div>
 </template>
@@ -104,8 +105,7 @@ export default {
     color: #1a1a1a;
     line-height: 1.2; // ol{ list-style: none; }
     overflow: hidden;
-    display: flex; 
-    // 动画
+    display: flex; // 动画
     .slide-fade-enter-active {
         transition: all .3s ease;
     }
