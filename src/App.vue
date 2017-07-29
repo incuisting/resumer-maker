@@ -58,6 +58,11 @@ export default {
 </script>
 
 <style lang="scss">
+@function vw($target) {
+    $vw-context: (1920*.01) * 1px;
+    @return ($target/$vw-context) * 1vw;
+}
+// px to vw
 #app {
   display: flex;
   height: 100vh;
@@ -66,7 +71,7 @@ export default {
   background:url('./assets/images/background.jpg'); 
 }
 .fullPage{
-  margin: 160px 0 24px 0;
+  margin: vw(160px) 0 vw(24px) 0;
 }
 .page {
   width: 80vw;
@@ -77,7 +82,7 @@ export default {
 
   display: flex;
   header {
-    width: 40em;
+    width: vw(560px);
     display: flex;
     flex-direction: column;
     #resumeEditor{
@@ -99,7 +104,7 @@ svg.icon {
   width: 1em;
   fill: currentColor;
   vertical-align: -0.1em;
-  font-size: 16px;
+  font-size: vw(16px);
 }
 
 #app {
@@ -113,7 +118,7 @@ svg.icon {
     display: none;
   }
   &.previewMode #resumePreview {
-    min-width: 976px;
+    min-width: vw(976px);
     margin: 0 auto;
   }
   #exitPreview {
@@ -122,8 +127,8 @@ svg.icon {
   &.previewMode #exitPreview {
     display: inline-block;
     position: fixed;
-    right: 16px;
-    bottom: 16px;
+    right: vw(16px);
+    bottom: vw(16px);
   }
 }
 </style>
