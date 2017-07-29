@@ -16,13 +16,14 @@ export default new Vuex.Store({
         resumeConfig: [{
                 field: 'profile',
                 icon: 'id',
-                keys: ['name', 'city', 'title', 'birthday'],
+                keys: ['name', 'city', 'birthday', 'intention'],
+                title: '个人信息',
                 template: {
-                    title: '求职意向',
                     name: '姓名',
                     city: '城市',
                     job: '职称',
-                    birthday: '出生年月'
+                    birthday: '出生年月',
+                    intention: '求职意向'
                 }
             },
             {
@@ -30,8 +31,8 @@ export default new Vuex.Store({
                 icon: 'work',
                 type: 'array',
                 keys: ['company', 'content'],
+                title: '工作经历',
                 template: {
-                    title: '工作经历',
                     company: '公司',
                     content: '工作内容',
                 }
@@ -41,8 +42,8 @@ export default new Vuex.Store({
                 icon: 'book',
                 type: 'array',
                 keys: ['school', 'content'],
+                title: '教育经历',
                 template: {
-                    title: '教育经历',
                     school: '学校名称',
                     content: '时间',
                 }
@@ -52,8 +53,8 @@ export default new Vuex.Store({
                 icon: 'heart',
                 type: 'array',
                 keys: ['name', 'content'],
+                title: '项目经历',
                 template: {
-                    title: '项目经历',
                     name: '项目名称',
                     content: '项目内容',
                 }
@@ -63,8 +64,8 @@ export default new Vuex.Store({
                 icon: 'cup',
                 type: 'array',
                 keys: ['name', 'content'],
+                title: '获奖信息',
                 template: {
-                    title: '获奖信息',
                     name: '名称',
                     content: '获奖内容',
                 }
@@ -74,8 +75,8 @@ export default new Vuex.Store({
                 icon: 'phone',
                 type: 'array',
                 keys: ['contact', 'content'],
+                title: '联系方式',
                 template: {
-                    title: '联系方式',
                     contact: '途径',
                     content: '内容',
                 }
@@ -101,6 +102,7 @@ export default new Vuex.Store({
                 }
             })
             Object.assign(state, payload)
+            console.log('resume', state.resumeConfig);
         },
         switchTab(state, payload) {
             state.selected = payload //提交荷载

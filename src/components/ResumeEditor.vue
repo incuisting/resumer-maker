@@ -11,7 +11,7 @@
     </nav>
     <ol class="panels">
       <li v-for="item in resumeConfig" v-show="item.field === selected">
-        <h2 class="item-title">{{item.template.title}}</h2>
+        <h2 class="item-title">{{item.title}}</h2>
         <div v-if="item.type === 'array'">
           <div class="subitem" v-for="(subitem, i) in resume[item.field]">
               <el-button class="remove" type="danger" @click="removeResumeSubfield(item.field, i)" size="mini">删除</el-button>

@@ -7,7 +7,7 @@
                         {{resume.profile.name}}
                     </h1>
                     <h2>意向岗位:</h2>
-                    <h2>{{resume.profile.title}}</h2>
+                    <h2>{{resume.profile.intention}}</h2>
                     <p>
                         <small>现居住：{{resume.profile.city}}</small>
                     </p>
