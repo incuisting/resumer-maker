@@ -18,7 +18,7 @@ export default new Vuex.Store({
                 icon: 'id',
                 keys: ['name', 'city', 'title', 'birthday'],
                 template: {
-                    title: '个人信息',
+                    title: '求职意向',
                     name: '姓名',
                     city: '城市',
                     job: '职称',

@@ -37,7 +37,7 @@
                     <h2>项目经历</h2>
                     <ol>
                         <li v-for="(item,index) in resume.projects" :key="index">
-                            <h3>{{item.name}}{{index}}</h3>
+                            <h3>{{item.name}}</h3>
                             <p v-show="item.content"> {{item.content}} </p>
                         </li>
                     </ol>
@@ -49,7 +49,7 @@
                     <h2>工作经历</h2>
                     <ol>
                         <li v-for="(item,index) in resume.workHistory" :key="index">
-                            <h3>{{item.company}}{{index}}</h3>
+                            <h3>{{item.company}}</h3>
                             <p v-show="item.content">{{item.content}}</p>
                         </li>
                     </ol>
