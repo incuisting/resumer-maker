@@ -70,6 +70,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@function vw($target) {
+    $vw-context: (1920*.01) * 1px;
+    @return ($target/$vw-context) * 1vw;
+}
 #resumeEditor {
   background: #ffffff;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
@@ -77,17 +81,17 @@ export default {
   flex-direction: row;
   overflow: hidden;
   >nav {
-    width: 80px;
-    background: black;
+    width: vw(80px);
+    background: #1a1a1a;
     color: white;
     >ol {
       >li {
-        height: 48px;
+        height: vw(48px);
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-top: 16px;
-        margin-bottom: 16px;
+        margin-top: vw(16px);
+        margin-bottom: vw(16px);
         &.active {
           background: white;
           color: black;
@@ -99,7 +103,7 @@ export default {
     flex-grow: 1;
     overflow: auto;
     >li {
-      padding: 24px;
+      padding: vw(24px);
       .item-title {
         margin-bottom: .5em;
       }
@@ -114,8 +118,8 @@ export default {
     }
   }
   svg.icon {
-    width: 24px; // 原设计稿 32px 不好看，改成 24px
-    height: 24px;
+    width: vw(24px); // 原设计稿 32px 不好看，改成 24px
+    height: vw(24px);
   }
 }
 
@@ -128,18 +132,18 @@ ol {
     display: block;
   }
   input[type=text] {
-    margin: 16px 0;
+    margin: vw(16px) 0;
     border: 1px solid #ddd;
     box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.25);
     width: 100%;
-    height: 40px;
-    padding: 0 8px;
+    height: vw(40px);
+    padding: 0 vw(8px);
   }
 }
 
 hr {
   border: none;
   border-top: 1px solid #ddd;
-  margin: 24px 0;
+  margin: vw(24px) 0;
 }
 </style>

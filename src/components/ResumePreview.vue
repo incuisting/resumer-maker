@@ -9,10 +9,10 @@
                     <h2>意向岗位:</h2>
                     <h2>{{resume.profile.intention}}</h2>
                     <p>
-                        <small>现居住：{{resume.profile.city}}</small>
+                        现居住：{{resume.profile.city}}
                     </p>
                     <p>
-                        <small>出生年月：{{resume.profile.birthday}}</small>
+                        出生年月：{{resume.profile.birthday}}
                     </p>
                 </section>
                 <section data-name="contacts" v-if="resume.contacts &&resume.contacts.length>0">
@@ -100,6 +100,10 @@ export default {
 </script>
  
  <style scoped lang="scss">
+ @function vw($target) {
+    $vw-context: (1920*.01) * 1px;
+    @return ($target/$vw-context) * 1vw;
+}
 #resumePreview {
     height: 100%;
     background: #ffffff;
@@ -122,7 +126,7 @@ export default {
     }
     header {
         width: 32%;
-        padding: 64px;
+        padding: vw(64px);
         background: #1a1a1a;
         color: #fff;
         h1 {
@@ -135,31 +139,31 @@ export default {
     }
     main {
         flex-grow: 1;
-        padding: 14px 96px 64px 96px;
+        padding: vw(14px) vw(96px) vw(64px) vw(96px);
         overflow: auto;
         section {
             position: relative;
-            margin-top: 48px;
+            margin-top: vw(48px);
             h2,
             h3 {
-                font-size: 16px;
+                font-size: vw(16px);
                 font-weight: bold;
             }
             h3 {
-                font-size: 14px;
+                font-size: vw(14px);
                 margin-bottom: .3em;
             }
             ol {
-                margin-top: 24px;
+                margin-top: vw(24px);
                 li {
-                    margin-bottom: 24px;
+                    margin-bottom: vw(24px);
                 }
             }
             svg.icon {
                 position: absolute;
                 fill: #1a1a1a;
-                top: 2px;
-                left: -24px;
+                top: vw(2px);
+                left: vw(-24px);
             }
         }
     }
@@ -169,7 +173,7 @@ export default {
         font-weight: normal;
     }
     section+section {
-        margin-top: 2em;
+        margin-top: vw(24px);
     }
     p {
         white-space: pre-line; //忽略文字间的空格
@@ -184,15 +188,28 @@ export default {
     section[data-name="profile"] {
         >h1 {
             margin: .1em 0;
-            font-size: 4em;
+            font-size: vw(56px);
         }
         p {
-            margin-top: 8px;
+            margin-top: vw(8px);
+            font-size: vw(14px);
+            line-height: 0.5;
+            &:last-of-type{
+                margin: vw(2px) 0 vw(8px) 0;
+            }
         }
+        h2{
+            font-size: vw(20px);
+            margin-top:vw(16px);
+            &:last-of-type{
+                margin: 0 0 vw(16px) 0;
+            } 
+        }
+        
     }
     section[data-name="workHistory"] {
         li li {
-            margin-top: 1em;
+            margin-top: vw(14px);
         }
         li {
             h3 {
@@ -202,22 +219,23 @@ export default {
     }
     section[data-name="contacts"] {
         position: relative;
+        margin-top: vw(16px);
         h2 {
-            margin-left: 24px;
-            font-size: 17px;
+            margin-left: vw(24px);
+            font-size: vw(17px);
             font-weight: 700;
         }
         svg.icon {
             position: absolute;
             fill: #ffffff;
-            top: 4px;
+            top: vw(4px);
             left: 0;
         }
         table {
-            margin-top: 8px;
+            margin-top: vw(8px);
         }
         td:first-child {
-            padding-right: 1em;
+            padding-right: vw(14px);
             font-weight: 700;
             text-transform: uppercase;
         }

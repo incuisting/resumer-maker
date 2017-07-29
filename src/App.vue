@@ -71,7 +71,7 @@ export default {
   background:url('./assets/images/background.jpg'); 
 }
 .fullPage{
-  margin: vw(160px) 0 vw(24px) 0;
+  margin: 10vh 0 5vh 0;
 }
 .page {
   width: 80vw;

@@ -71,11 +71,15 @@ export default {
  
  <style scoped lang="scss">
 //  如果使用 "scoped" 属性，那么所规定的样式只能应用到 style 元素的父元素及其子元素。
+@function vw($target) {
+    $vw-context: (1920*.01) * 1px;
+    @return ($target/$vw-context) * 1vw;
+}
 #topbar {
     background: #f25743;
     color: #fff;
     .wrapper {
-        height: 8em;
+        height: vw(112px);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -86,7 +90,7 @@ export default {
                 justify-content: center;
                 align-items: center;
                 .welcome {
-                    font-size: 2em;
+                    font-size: vw(28px);
                     margin-right: .5em
                 }
             }
@@ -96,12 +100,12 @@ export default {
 
 .button {
     // 由于加了 scoped， 所以这个 button 选择器只在本组件内有效，不会影响其他组件
-    width: 72px;
-    height: 32px;
+    width: vw(72px);
+    height: vw(32px);
     border: 1px solid #fff;
-    border-radius: 8px;
+    border-radius: vw(8px);
     cursor: pointer;
-    font-size: 16px; // 设计稿上是 20px，看起来太大，就改成 18px 了
+    font-size: vw(16px); // 设计稿上是 20px，看起来太大，就改成 18px 了
     background: transparent;
     color: #222;
     text-decoration: none;
@@ -109,7 +113,7 @@ export default {
     justify-content: center;
     align-items: center;
     vertical-align: middle;
-    margin-right: 8px;
+    margin-right: vw(8px);
     color: white;
     // border-radius: 5px;
     &:hover {
