@@ -177,6 +177,9 @@ export default {
     }
     p {
         white-space: pre-line; //忽略文字间的空格
+        max-width: vw(784px);
+        word-wrap:break-word; 
+        word-break:normal; 
     }
     section {
         >h2:first-child {
